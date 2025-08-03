@@ -1,56 +1,27 @@
-let notes = JSON.parse(localStorage.getItem("notes")) || [];
+const addBtn = document.getElementById("addBtn");
+const notesContainer = document.getElementById("notes-container");
 
-function showToast(msg) {
-  const toast = document.getElementById("toast");
-  toast.innerText = msg;
-  toast.style.opacity = "1";
-  setTimeout(() => {
-    toast.style.opacity = "0";
-  }, 2000);
-}
-
-function addNote() {
-  const noteInput = document.getElementById("noteInput");
-  const noteText = noteInput.value.trim();
+addBtn.addEventListener("click", () => {
+  const noteText = document.getElementById("noteInput").value.trim();
   if (noteText === "") return;
 
-  notes.push(noteText);
-  localStorage.setItem("notes", JSON.stringify(notes));
-  noteInput.value = "";
-  renderNotes();
-}
+  const noteDiv = document.createElement("div");
+  noteDiv.classList.add("note");
 
-function deleteNote(index) {
-  notes.splice(index, 1);
-  localStorage.setItem("notes", JSON.stringify(notes));
-  renderNotes();
-  showToast("Note deleted");
-}
+  const notePara = document.createElement("p");
+  notePara.innerText = noteText;
 
-function renderNotes() {
-  const notesContainer = document.getElementById("notesContainer");
-  notesContainer.innerHTML = "";
+  const deleteBtn = document.createElement("button");
+  deleteBtn.innerText = "Delete";
+  deleteBtn.classList.add("delete-btn");
 
-  notes.forEach((note, index) => {
-    const noteCard = document.createElement("div");
-    noteCard.className = "note-card";
+  deleteBtn.onclick = () => {
+    notesContainer.removeChild(noteDiv);
+  };
 
-    const actions = document.createElement("div");
-    actions.className = "actions";
+  noteDiv.appendChild(notePara);
+  noteDiv.appendChild(deleteBtn);
+  notesContainer.appendChild(noteDiv);
 
-    const delIcon = document.createElement("i");
-    delIcon.className = "fas fa-trash";
-    delIcon.onclick = () => deleteNote(index);
-
-    actions.appendChild(delIcon);
-
-    const noteContent = document.createElement("div");
-    noteContent.innerText = note;
-
-    noteCard.appendChild(actions);
-    noteCard.appendChild(noteContent);
-    notesContainer.appendChild(noteCard);
-  });
-}
-
-renderNotes();
+  document.getElementById("noteInput").value = "";
+});
