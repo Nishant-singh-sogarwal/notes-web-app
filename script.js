@@ -1,33 +1,42 @@
-function addNote() {
-  const noteInput = document.getElementById('note-input');
-  const noteText = noteInput.value.trim();
-
-  if (noteText !== '') {
-    const noteList = document.getElementById('notes-list');
-    const newNote = document.createElement('li');
-    newNote.textContent = noteText;
-    noteList.appendChild(newNote);
-
-    noteInput.value = '';
-    saveNotes();
-  }
-}
+let notes = JSON.parse(localStorage.getItem("notes")) || [];
 
 function saveNotes() {
-  const notes = [];
-  const items = document.querySelectorAll('#notes-list li');
-  items.forEach(item => notes.push(item.textContent));
-  localStorage.setItem('notes', JSON.stringify(notes));
+  localStorage.setItem("notes", JSON.stringify(notes));
 }
 
-function loadNotes() {
-  const notes = JSON.parse(localStorage.getItem('notes') || '[]');
-  const noteList = document.getElementById('notes-list');
-  notes.forEach(text => {
-    const li = document.createElement('li');
-    li.textContent = text;
-    noteList.appendChild(li);
+function renderNotes() {
+  const container = document.getElementById("notesContainer");
+  if (!container) return;
+  container.innerHTML = "";
+  notes.forEach((note, idx) => {
+    const noteDiv = document.createElement("div");
+    noteDiv.classList.add("note");
+
+    const p = document.createElement("p");
+    p.innerText = note;
+    noteDiv.appendChild(p);
+
+    const btn = document.createElement("button");
+    btn.innerText = "Delete";
+    btn.onclick = () => {
+      notes.splice(idx, 1);
+      saveNotes();
+      renderNotes();
+    };
+    noteDiv.appendChild(btn);
+
+    container.appendChild(noteDiv);
   });
 }
 
-window.onload = loadNotes;
+function addNote() {
+  const input = document.getElementById("noteInput");
+  const text = input?.value.trim();
+  if (!text) return;
+  notes.push(text);
+  saveNotes();
+  renderNotes();
+  input.value = "";
+}
+
+renderNotes();

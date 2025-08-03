@@ -1,36 +1,56 @@
 body {
-  font-family: sans-serif;
-  background: #f4f4f4;
-  display: flex;
-  justify-content: center;
-  padding: 30px;
+  font-family: 'Poppins', sans-serif;
+  background: #f0f4f8;
+  color: #333;
+  text-align: center;
+  padding: 2rem;
 }
 
-.container {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  width: 400px;
+.control {
+  margin-bottom: 1rem;
 }
 
-textarea {
-  width: 100%;
-  height: 100px;
-  margin-bottom: 10px;
+input {
+  padding: 0.5rem;
+  width: 200px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }
 
 button {
-  padding: 10px 20px;
-  margin-bottom: 20px;
+  padding: 0.5rem 1rem;
+  margin-left: 0.5rem;
   background: #007bff;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-li {
-  background: #e0e0e0;
-  margin: 5px 0;
-  padding: 8px;
-  border-radius: 5px;
+button:hover {
+  background: #0056b3;
+}
+
+#notesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.note {
+  background: #fff;
+  width: 300px;
+  margin-bottom: 0.5rem;
+  padding: 0.8rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note p {
+  margin: 0;
+  flex: 1;
+  text-align: left;
 }
