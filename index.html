@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Notes Web App</title>
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <h1>📝 Notes App</h1>
-  <div class="control">
-    <input type="text" id="noteInput" placeholder="Write a note…">
-    <button onclick="addNote()">Add Note</button>
+  <div class="container">
+    <h1>📝 Notes Web App</h1>
+    <div class="input-section">
+      <textarea id="noteInput" placeholder="Type your note here..."></textarea>
+      <button onclick="addNote()"><i class="fas fa-plus-circle"></i> Add Note</button>
+    </div>
+
+    <div id="notesContainer"></div>
   </div>
-  <div id="notesContainer"></div>
+
+  <div id="toast">Note deleted</div>
+
   <script src="script.js"></script>
 </body>
 </html>

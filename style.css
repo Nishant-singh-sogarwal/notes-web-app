@@ -1,56 +1,104 @@
 body {
   font-family: 'Poppins', sans-serif;
-  background: #f0f4f8;
-  color: #333;
-  text-align: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+.container {
+  max-width: 700px;
+  margin: 2rem auto;
   padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
-.control {
-  margin-bottom: 1rem;
+h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
-input {
-  padding: 0.5rem;
-  width: 200px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+textarea {
+  resize: none;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  height: 100px;
 }
 
 button {
-  padding: 0.5rem 1rem;
-  margin-left: 0.5rem;
-  background: #007bff;
+  padding: 0.7rem;
+  font-size: 1rem;
+  background-color: #00cec9;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background: #0056b3;
+  background-color: #00b894;
 }
 
 #notesContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
 }
 
-.note {
-  background: #fff;
-  width: 300px;
-  margin-bottom: 0.5rem;
-  padding: 0.8rem;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.note-card {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 1rem;
+  position: relative;
+  word-wrap: break-word;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
 }
 
-.note p {
-  margin: 0;
-  flex: 1;
-  text-align: left;
+.note-card:hover {
+  transform: scale(1.02);
+}
+
+.note-card .actions {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
+
+.note-card .actions i {
+  margin-left: 8px;
+  cursor: pointer;
+  color: #fff;
+  transition: color 0.2s;
+}
+
+.note-card .actions i:hover {
+  color: #ff7675;
+}
+
+#toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 999;
 }

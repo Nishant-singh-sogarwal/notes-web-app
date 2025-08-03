@@ -1,42 +1,56 @@
 let notes = JSON.parse(localStorage.getItem("notes")) || [];
 
-function saveNotes() {
-  localStorage.setItem("notes", JSON.stringify(notes));
-}
-
-function renderNotes() {
-  const container = document.getElementById("notesContainer");
-  if (!container) return;
-  container.innerHTML = "";
-  notes.forEach((note, idx) => {
-    const noteDiv = document.createElement("div");
-    noteDiv.classList.add("note");
-
-    const p = document.createElement("p");
-    p.innerText = note;
-    noteDiv.appendChild(p);
-
-    const btn = document.createElement("button");
-    btn.innerText = "Delete";
-    btn.onclick = () => {
-      notes.splice(idx, 1);
-      saveNotes();
-      renderNotes();
-    };
-    noteDiv.appendChild(btn);
-
-    container.appendChild(noteDiv);
-  });
+function showToast(msg) {
+  const toast = document.getElementById("toast");
+  toast.innerText = msg;
+  toast.style.opacity = "1";
+  setTimeout(() => {
+    toast.style.opacity = "0";
+  }, 2000);
 }
 
 function addNote() {
-  const input = document.getElementById("noteInput");
-  const text = input?.value.trim();
-  if (!text) return;
-  notes.push(text);
-  saveNotes();
+  const noteInput = document.getElementById("noteInput");
+  const noteText = noteInput.value.trim();
+  if (noteText === "") return;
+
+  notes.push(noteText);
+  localStorage.setItem("notes", JSON.stringify(notes));
+  noteInput.value = "";
   renderNotes();
-  input.value = "";
+}
+
+function deleteNote(index) {
+  notes.splice(index, 1);
+  localStorage.setItem("notes", JSON.stringify(notes));
+  renderNotes();
+  showToast("Note deleted");
+}
+
+function renderNotes() {
+  const notesContainer = document.getElementById("notesContainer");
+  notesContainer.innerHTML = "";
+
+  notes.forEach((note, index) => {
+    const noteCard = document.createElement("div");
+    noteCard.className = "note-card";
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+
+    const delIcon = document.createElement("i");
+    delIcon.className = "fas fa-trash";
+    delIcon.onclick = () => deleteNote(index);
+
+    actions.appendChild(delIcon);
+
+    const noteContent = document.createElement("div");
+    noteContent.innerText = note;
+
+    noteCard.appendChild(actions);
+    noteCard.appendChild(noteContent);
+    notesContainer.appendChild(noteCard);
+  });
 }
 
 renderNotes();
