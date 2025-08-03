@@ -1,22 +1,18 @@
 # 📝 Notes Web App
 
-A modern, responsive web application to create, store, and delete your personal notes with persistent storage using localStorage.
+A simple and elegant web app to quickly write, view, and delete your notes. Built using HTML, CSS, and JavaScript with a clean UI design and glassmorphism effect.
 
-## ✨ Features
+## 🚀 Features
 
-- 📌 Add, view, and delete notes easily
-- 📦 Data saved in localStorage (no backend required)
-- 🧊 Clean glassmorphism UI with hover animations
-- 💡 Mobile responsive design
-- 🔥 Toast notification for delete action
+- Add new notes instantly
+- View all your notes in one place
+- Delete any note with a single click
+- Responsive and modern UI
 
-## 🧪 Tech Stack
+## 🔧 Tech Stack
 
 - HTML
-- CSS (Glassmorphism + Responsive)**
-- JavaScript (DOM + localStorage)**
+- CSS (Glassmorphism + Gradient UI)
+- JavaScript (Vanilla JS, no frameworks)
 
-## 🌐 Live Link
-
-🔗 [Click to Open Live App](https://nishant-singh-sogarwal.github.io/notes-web-app)
 
